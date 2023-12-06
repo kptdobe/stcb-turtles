@@ -1,0 +1,20 @@
+version: 1
+
+indices:
+  turtles:
+    include:
+      - '/turtles/*'
+    target: /turtles-index.xlsx
+    properties:
+      id:
+        select: body h1
+        values: |
+          textContent(el)
+      left: 
+        select: body .observation img[alt="left"]
+        values: |
+          attribute(el, 'src')
+      right:
+        select: body .observation img[alt="right"]
+        values: |
+          attribute(el, 'src')
