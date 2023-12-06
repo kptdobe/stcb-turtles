@@ -8,7 +8,7 @@ indices:
     properties:
       id:
         select: body h1
-        values: |
+        value: |
           textContent(el)
       left: 
         select: body .observation img[alt="left"]
