@@ -4,7 +4,7 @@ indices:
   turtles:
     include:
       - '/turtles/*'
-    target: /turtles-index.xlsx
+    target: /turtles-index
     properties:
       id:
         select: body h1
