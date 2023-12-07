@@ -18,3 +18,7 @@ indices:
         select: body .observation img[alt="right"]
         values: |
           attribute(el, 'src')
+      html:
+        select: body .observation
+        values: |
+          innerHTML(el)
