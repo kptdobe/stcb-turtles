@@ -10,15 +10,7 @@ indices:
         select: body h1
         value: |
           textContent(el)
-      left: 
-        select: body .observation img[alt="left"]
-        values: |
-          attribute(el, 'src')
-      right:
-        select: body .observation img[alt="right"]
-        values: |
-          attribute(el, 'src')
-      html:
+      observations:
         select: body .observation
         values: |
           innerHTML(el)
