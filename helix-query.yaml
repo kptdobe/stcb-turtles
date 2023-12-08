@@ -3,14 +3,38 @@ version: 1
 indices:
   turtles:
     include:
-      - '/turtles/*'
+      - '/turtles/**'
     target: /turtles-index
     properties:
       id:
         select: body h1
         value: |
           textContent(el)
-      observations:
-        select: body .observation
-        values: |
-          innerHTML(el)
+      date:
+        select: head > meta[name="date"]
+        value: |
+          attribute(el, 'content')
+      capture-method:
+        select: head > meta[name="capture-method"]
+        value: |
+          attribute(el, 'content')
+      weight:
+        select: head > meta[name="weight"]
+        value: |
+          attribute(el, 'content')
+      scln-t-left:
+        select: head > meta[name="scln-t-left"]
+        value: |
+          attribute(el, 'content')
+      scln-t-right:
+        select: head > meta[name="scln-t-right"]
+        value: |
+          attribute(el, 'content')
+      left:
+        select: head > meta[name="left"]
+        value: |
+          attribute(el, 'content')
+      right:
+        select: head > meta[name="right"]
+        value: |
+          attribute(el, 'content')
