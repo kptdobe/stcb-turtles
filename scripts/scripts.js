@@ -11,6 +11,7 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
+  getMetadata,
 } from './aem.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -19,15 +20,36 @@ const LCP_BLOCKS = []; // add your LCP blocks to the list
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
  */
-function buildHeroBlock(main) {
-  const h1 = main.querySelector('h1');
-  const picture = main.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture, h1] }));
-    main.prepend(section);
-  }
+// function buildHeroBlock(main) {
+//   const h1 = main.querySelector('h1');
+//   const picture = main.querySelector('picture');
+//   // eslint-disable-next-line no-bitwise
+//   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
+//     const section = document.createElement('div');
+//     section.append(buildBlock('hero', { elems: [picture, h1] }));
+//     main.prepend(section);
+//   }
+// }
+
+const EXCLUDE_META = ['viewport', 'template', 'description', 'keywords', 'generator', 'robots', 'twitter:card', 'twitter:site', 'twitter:title', 'twitter:description', 'twitter:image', 'twitter:image:alt', 'twitter:cr'];
+function buildTurtleCardBlock(main) {
+  const config = [];
+  document.head.querySelectorAll('meta[name]').forEach((meta) => {
+    const name = meta.getAttribute('name');
+    if (EXCLUDE_META.includes(name)) return;
+    const content = meta.getAttribute('content') || '';
+    if (content.startsWith('./media')) {
+      const img = document.createElement('img');
+      img.src = content;
+      config.push([name, img]);
+    } else {
+      config.push([name, content]);
+    }
+  });
+
+  const section = document.createElement('div');
+  section.append(buildBlock('turtle-card', config));
+  main.append(section);
 }
 
 /**
@@ -48,7 +70,10 @@ async function loadFonts() {
  */
 function buildAutoBlocks(main) {
   try {
-    buildHeroBlock(main);
+    const template = getMetadata('template');
+    if (template === 'turtle' && main.querySelector('h1')) {
+      buildTurtleCardBlock(main);
+    }
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

@@ -15,6 +15,7 @@
   --link-color: #035fe6;
   --link-hover-color: #136ff6;
   --background-color: #fff;
+  --header-background-color: #269ab1;
   --overlay-background-color: #eee;
   --highlight-background-color: #ccc;
   --text-color: #000;
@@ -229,12 +230,12 @@ main img {
 }
 
 main .section {
-  padding: 64px 16px;
+  padding: 16px 16px;
 }
 
 @media (width >= 600px) {
   main .section {
-    padding: 64px 32px;
+    padding: 16px 32px;
   }
 }
 

@@ -1,4 +1,4 @@
-.observation {
+.turtle-card {
   display: flex;
   flex-direction: column;
 
@@ -7,21 +7,21 @@
   margin-top: 20px;
 }
 
-.observation > div {
+.turtle-card > div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.observation > div > div:first-of-type {
+.turtle-card > div > div:first-of-type {
   width: 20%;
 }
 
-.observation > div > div:last-of-type {
+.turtle-card > div > div:last-of-type {
   width: 80%;
 }
 
-.observation img {
+.turtle-card img {
   max-width: 500px;
 }
