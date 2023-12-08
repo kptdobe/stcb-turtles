@@ -55,14 +55,16 @@ export default function decorate(block) {
   search.addEventListener('input', async () => {
     const index = await getIndex();
     const query = search.value.toLowerCase();
-    console.log(index);
-    const items = index.filter((item) => {
-      const { id, date, 'capture-method': captureMethod } = item;
-      if (id.toLowerCase().includes(query)) return true;
-      if (date.toLowerCase().includes(query)) return true;
-      if (captureMethod.toLowerCase().includes(query)) return true;
-      return false;
-    });
+    let items = [];
+    if (query !== '') {
+      items = index.filter((item) => {
+        const { id, date, 'capture-method': captureMethod } = item;
+        if (id.toLowerCase().includes(query)) return true;
+        if (date.toLowerCase().includes(query)) return true;
+        if (captureMethod.toLowerCase().includes(query)) return true;
+        return false;
+      });
+    }
     console.log(items);
     displayResults(results, items);
   });
