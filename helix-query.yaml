@@ -10,6 +10,10 @@ indices:
         select: body h1
         value: |
           textContent(el)
+      image:
+        select: body img
+        value: |
+          attribute(el, 'src')
       date:
         select: head > meta[name="date"]
         value: |
