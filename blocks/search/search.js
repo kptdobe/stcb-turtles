@@ -18,7 +18,7 @@ const displayResults = (container, items) => {
   if (!items.length) { 
     const div = document.createElement('div');
     div.className = 'no-results';
-    div.textContent = 'No results found';
+    div.textContent = 'No turtle found';
     container.append(div);
   } else {
     items.forEach((item) => {
